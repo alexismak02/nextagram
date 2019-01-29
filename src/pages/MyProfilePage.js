@@ -10,12 +10,12 @@ class MyProfilePage extends React.Component {
   }
 
   componentDidMount(){
-    const jwt = `Bearer ${localStorage.getItem('jwt')}`
-    console.log(jwt)
+    const jwt = JSON.parse(localStorage.myData).auth_token
+    
     axios({
       method: 'get',
       url: 'https://insta.nextacademy.com/api/v1/images/me',
-      headers: {Authorization: jwt}
+      headers: {Authorization: `Bearer ${jwt}`}
     })
 
     .then(result=>{
@@ -25,13 +25,20 @@ class MyProfilePage extends React.Component {
 
     .catch(error=>{
       console.log('Error:', error)
+      alert('You have not logged in!')
     })
   }
 
   render(){
     const {myImages}=this.state
+    const username= JSON.parse(localStorage.myData).user.username
+    const profileImage= JSON.parse(localStorage.myData).user.profile_picture
+    
     return(
+
         <>
+        {username}
+        <Image src={`http://next-curriculum-instagram.s3.amazonaws.com/${profileImage}`} alt=""/>
         {
             myImages.map((myImage,index)=>
             <Image key={index} src={myImage} className="mr-2 mb-2" width="200" height="200" alt=""/>)

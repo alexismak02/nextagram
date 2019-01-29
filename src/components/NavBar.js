@@ -19,7 +19,7 @@ export default class NavBar extends React.Component {
 
     //Remove user from local storage
     handleLogout=()=>{
-        localStorage.removeItem('jwt')
+        localStorage.removeItem('myData')
         this.props.refreshApp()
     }
 
@@ -50,7 +50,7 @@ export default class NavBar extends React.Component {
                         <Link to="/users/me" style={{color:"rgb(241, 242, 191)"}}>My Profile</Link>
                     </NavItem>
                     <NavItem className="mt-3 mr-2">
-                        {localStorage.getItem('jwt')?<Link to="/" style={{color:"rgb(203, 218, 244)"}} onClick={this.handleLogout}>Logout</Link>:<Link to="/" style={{color:"rgb(203, 218, 244)"}} onClick={this.toggle}>Login</Link>}
+                        {localStorage.getItem('myData')?<Link to="/" style={{color:"rgb(203, 218, 244)"}} onClick={this.handleLogout}>Logout</Link>:<Link to="/" style={{color:"rgb(203, 218, 244)"}} onClick={this.toggle}>Login</Link>}
                     </NavItem>
                 </Nav>
         </Navbar>

@@ -31,7 +31,7 @@ export default class LoginModal extends React.Component {
 
         .then(response=> {
         console.log(response)
-        localStorage.setItem('jwt',response.data.auth_token)
+        localStorage.setItem('myData',JSON.stringify(response.data))
         setTimeout(this.props.toggle,3000)
         const{isLogin}=this.state
         this.setState({
